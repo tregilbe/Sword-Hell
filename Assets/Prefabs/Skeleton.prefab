@@ -129,6 +129,7 @@ GameObject:
   - component: {fileID: 2528191094215262527}
   - component: {fileID: 2528191094215262524}
   - component: {fileID: 2528191094215262520}
+  - component: {fileID: 2110307154}
   m_Layer: 8
   m_Name: Skeleton
   m_TagString: Enemy
@@ -263,9 +264,33 @@ MonoBehaviour:
   speed: 1
   stoppingDistance: 1.5
   retreatDistance: 1
+  waitTime: 0
+  startWaitTime: 2
   player: {fileID: 0}
   rb: {fileID: 0}
+  moveSpots: []
+  isPatrolling: 0
+  isChasing: 0
   health: 3
+--- !u!95 &2110307154
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2528191094215262525}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a549b99bf703dbc42b5dbae3738443d4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2528191094286696396
 GameObject:
   m_ObjectHideFlags: 0
