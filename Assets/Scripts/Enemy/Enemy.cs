@@ -12,10 +12,13 @@ public class Enemy : MonoBehaviour
 
     public Transform player;
     public Rigidbody2D rb;
-    private Animator animator;
 
-    public Transform[] moveSpots;
-    private int randomSpot;
+    public Transform moveSpot;
+    public float minX;
+    public float maxX;
+    public float minY;
+    public float maxY;
+
 
     public bool isPatrolling = false;
     public bool isChasing = false;
@@ -25,11 +28,12 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        animator = gameObject.GetComponent<Animator>();
         GameManager.instance.enemiesList.Add(this.gameObject);
 
         waitTime = startWaitTime;
-        randomSpot = Random.Range(0, moveSpots.Length);
+
+        moveSpot.position = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
+
     }
 
     private void Update()
@@ -45,7 +49,8 @@ public class Enemy : MonoBehaviour
         if (isPatrolling == true)
         {
             Patrol();
-        }else if (isChasing == true)
+        }
+        else if (isChasing == true)
         {
             Chase();
         }
@@ -66,13 +71,13 @@ public class Enemy : MonoBehaviour
     void Patrol()
     {
         //Patrol
-        transform.position = Vector2.MoveTowards(transform.position, moveSpots[randomSpot].position, speed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, moveSpot.position, speed * Time.deltaTime);
 
-        if (Vector2.Distance(transform.position, moveSpots[randomSpot].position) < 0.2f)
+        if (Vector2.Distance(transform.position, moveSpot.position) < 0.2f)
         {
             if (waitTime <= 0)
             {
-                randomSpot = Random.Range(0, moveSpots.Length);
+                moveSpot.position = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
                 waitTime = startWaitTime;
             }
             else
@@ -97,30 +102,9 @@ public class Enemy : MonoBehaviour
         {
             transform.position = Vector2.MoveTowards(transform.position, player.position, -speed * Time.deltaTime);
         }
-
-        if (transform.position.x < player.position.x)
-        {
-            animator.Play("WarriorWalkRight");
-        }
-        else if (transform.position.x > player.position.x)
-        {
-            animator.Play("WarriorWalkLeft");
-        }
-        else if (transform.position.y < player.position.y)
-        {
-            animator.Play("WarriorWalkUp");
-        }
-        else if (transform.position.y > player.position.y)
-        {
-            animator.Play("WarriorWalkDown");
-        }
-        else
-        {
-            animator.Play("WarriorIdle");
-        }
     }
     void Idle()
     {
-        animator.Play("WarriorIdle");
+
     }
 }
