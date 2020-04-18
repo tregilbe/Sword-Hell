@@ -480,8 +480,8 @@ MonoBehaviour:
   speed: 1.5
   stoppingDistance: 2
   retreatDistance: 1
-  waitTime: 2
-  startWaitTime: 0
+  waitTime: 0
+  startWaitTime: 2
   player: {fileID: 0}
   rb: {fileID: 4697401838896218524}
   moveSpot: {fileID: 0}
