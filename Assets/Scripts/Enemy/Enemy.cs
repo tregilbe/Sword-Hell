@@ -24,6 +24,7 @@ public class Enemy : MonoBehaviour
     public bool isChasing = false;
 
     public int health;
+    public HealthBar healthBar;
 
     void Start()
     {
@@ -34,6 +35,7 @@ public class Enemy : MonoBehaviour
 
         moveSpot.position = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
 
+        healthBar.SetMaxHealth(health);
     }
 
     private void Update()
@@ -63,6 +65,7 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
+        healthBar.SetHealth(health);
     }
     void OnDestroy()
     {
