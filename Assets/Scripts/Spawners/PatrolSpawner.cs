@@ -24,6 +24,8 @@ public class PatrolSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameManager.instance.spawnersList.Add(this.gameObject);
+
         skeletonPrefab = GameManager.instance.skeletonPrefab;
         warriorSkeletonPrefab = GameManager.instance.warriorSkeletonPrefab;
         demonPrefab = GameManager.instance.demonPrefab;
@@ -61,6 +63,7 @@ public class PatrolSpawner : MonoBehaviour
             enemy.GetComponent<Enemy>().minY = minY;
             enemy.GetComponent<Enemy>().maxY = maxY;
             enemy.GetComponent<Enemy>().isPatrolling = true;
+            GameManager.instance.spawnersList.Remove(this.gameObject);
             Destroy(this.gameObject);
         }
     }
