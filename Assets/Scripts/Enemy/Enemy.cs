@@ -10,6 +10,8 @@ public class Enemy : MonoBehaviour
     public float waitTime;
     public float startWaitTime;
 
+    public GameObject healthPackPrefab;
+
     public Transform player;
     public Rigidbody2D rb;
 
@@ -25,6 +27,8 @@ public class Enemy : MonoBehaviour
 
     public int health;
     public HealthBar healthBar;
+
+    public int healthDrop;
 
     void Start()
     {
@@ -69,7 +73,16 @@ public class Enemy : MonoBehaviour
     }
     void OnDestroy()
     {
-        GameManager.instance.enemiesList.Remove(this.gameObject);
+        healthDrop = Random.Range(1, 6);
+
+        if (healthDrop <= 3)
+        {
+            Instantiate(healthPackPrefab, transform.position, transform.rotation);
+            GameManager.instance.enemiesList.Remove(this.gameObject);
+        } else if (healthDrop >= 3.1)
+        {
+            GameManager.instance.enemiesList.Remove(this.gameObject);
+        }
     }
     void Patrol()
     {

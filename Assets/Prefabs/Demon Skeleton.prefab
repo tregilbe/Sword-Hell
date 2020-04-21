@@ -482,6 +482,8 @@ MonoBehaviour:
   retreatDistance: 1
   waitTime: 0
   startWaitTime: 2
+  healthPackPrefab: {fileID: 5558486062237037888, guid: dbc2f3721dc4b1743b090477a07585d8,
+    type: 3}
   player: {fileID: 0}
   rb: {fileID: 4697401838896218524}
   moveSpot: {fileID: 0}

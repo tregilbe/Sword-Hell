@@ -16,4 +16,9 @@ public class MainMenu : MonoBehaviour
         Debug.Log("Quit!");
         Application.Quit();
     }
+
+    public void PlayTutorial()
+    {
+        SceneManager.LoadScene(sceneName: "Tutorial");
+    }
 }

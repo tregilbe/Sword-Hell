@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -109,6 +110,11 @@ public class PlayerController : MonoBehaviour
             {
                 hearts[i].enabled = false;
             }
+        }
+
+        if (health == 0)
+        {
+            SceneManager.LoadScene(sceneName: "GameOver");
         }
     }
 
