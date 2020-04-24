@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class Enemy : MonoBehaviour
 {
@@ -29,6 +30,13 @@ public class Enemy : MonoBehaviour
     public HealthBar healthBar;
 
     public int healthDrop;
+
+    public GameObject soundPlayer;
+
+    public AudioSource audioSource;
+    public AudioSource deathSound;
+    public AudioClip hit;
+    public AudioClip dead;
 
     void Start()
     {
@@ -64,15 +72,26 @@ public class Enemy : MonoBehaviour
         {
             Idle();
         }
+
+        soundPlayer = GameObject.FindGameObjectWithTag("Sound");
+
+        deathSound = soundPlayer.GetComponent<AudioSource>();
     }
 
     public void TakeDamage(int damage)
     {
         health -= damage;
         healthBar.SetHealth(health);
+
+        // play hit sound here
+        audioSource.clip = hit;
+        audioSource.Play();
     }
     void OnDestroy()
     {
+        deathSound.clip = dead;
+        deathSound.Play();
+
         healthDrop = Random.Range(1, 6);
 
         if (healthDrop <= 3)

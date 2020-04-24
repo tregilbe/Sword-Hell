@@ -1,15 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class Weapon : MonoBehaviour
 {
+    public AudioSource audioSource;
+    public AudioClip shoot;
 
     public float offset;
 
     public GameObject projectile;
     public Transform shotPoint;
-
 
     private float timeBtwShots;
     public float startTimeBtwShots;
@@ -26,6 +28,8 @@ public class Weapon : MonoBehaviour
             {
                 Instantiate(projectile, shotPoint.position, transform.rotation);
                 timeBtwShots = startTimeBtwShots;
+                audioSource.clip = shoot;
+                audioSource.Play();
             }
         }
         else
